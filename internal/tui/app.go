@@ -220,7 +220,12 @@ func (m Model) renderStatusBar() string {
 
 	if m.state == stateLogViewer {
 		if m.selectedBuild != nil {
-			parts = append(parts, statusBarStyle.Render(fmt.Sprintf("#%d", m.selectedBuild.Number)))
+			// Truncate commit message to 12 chars
+			msg := m.selectedBuild.Message
+			if len(msg) > 12 {
+				msg = msg[:12] + "..."
+			}
+			parts = append(parts, statusBarStyle.Render(msg))
 		}
 		// Add log tabs to statusbar
 		parts = append(parts, m.logViewer.RenderStatusBar())

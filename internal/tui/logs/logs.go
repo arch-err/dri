@@ -48,7 +48,7 @@ func New(build *drone.Build, width, height int) Model {
 	s.Spinner = spinner.Dot
 	s.Style = styles.SpinnerStyle
 
-	vp := viewport.New(width, height-2) // Reduced from -4 for compact layout
+	vp := viewport.New(width, height-3) // Account for statusbar + help line
 
 	m := Model{
 		tabs:     tabs,
@@ -158,7 +158,8 @@ func (m Model) View() string {
 		return styles.AppStyle.Render("No steps found in this build.")
 	}
 
-	return m.viewport.View()
+	help := styles.HelpStyle.Render("tab/shift+tab: switch · ↑/↓: scroll · gg/G: top/bottom · esc: back")
+	return lipgloss.JoinVertical(lipgloss.Left, m.viewport.View(), help)
 }
 
 // RenderStatusBar renders the tab bar as a single line statusbar
@@ -191,5 +192,5 @@ func (m *Model) SetSize(w, h int) {
 	m.width = w
 	m.height = h
 	m.viewport.Width = w
-	m.viewport.Height = h - 2 // Compact layout
+	m.viewport.Height = h - 3 // Account for statusbar + help line
 }

@@ -36,13 +36,14 @@ func (i repoItem) Description() string {
 }
 
 type Model struct {
-	list          list.Model
-	allRepos      []*drone.Repo
-	showInactive  bool
-	lastEscapeAt  time.Time
-	width         int
-	height        int
-	pendingGCount int
+	list            list.Model
+	allRepos        []*drone.Repo
+	showInactive    bool
+	lastEscapeAt    time.Time
+	showEscapeHint  bool
+	width           int
+	height          int
+	pendingGCount   int
 }
 
 func New(repos []*drone.Repo, width, height int) Model {
@@ -83,8 +84,13 @@ func (m Model) Init() tea.Cmd {
 }
 
 func (m Model) Update(msgin tea.Msg) (Model, tea.Cmd) {
-	if kmsg, ok := msgin.(tea.KeyMsg); ok {
-		switch kmsg.String() {
+	switch msgin := msgin.(type) {
+	case msg.ClearEscapeHintMsg:
+		m.showEscapeHint = false
+		return m, nil
+
+	case tea.KeyMsg:
+		switch msgin.String() {
 		case "enter":
 			if !m.IsFiltering() {
 				if item, ok := m.list.SelectedItem().(repoItem); ok {
@@ -107,9 +113,15 @@ func (m Model) Update(msgin tea.Msg) (Model, tea.Cmd) {
 			if !m.IsFiltering() {
 				now := time.Now()
 				if now.Sub(m.lastEscapeAt) < 500*time.Millisecond {
+					m.showEscapeHint = false
 					return m, tea.Quit
 				}
 				m.lastEscapeAt = now
+				m.showEscapeHint = true
+				// Set timer to clear hint after 2 seconds
+				return m, tea.Tick(2*time.Second, func(t time.Time) tea.Msg {
+					return msg.ClearEscapeHintMsg{}
+				})
 			}
 
 		case "g":
@@ -145,7 +157,10 @@ func (m Model) Update(msgin tea.Msg) (Model, tea.Cmd) {
 func (m Model) View() string {
 	help := ""
 	if !m.IsFiltering() {
-		if m.showInactive {
+		if m.showEscapeHint {
+			// Show escape hint when user pressed escape once
+			help = styles.HelpStyle.Render("Press escape again to exit")
+		} else if m.showInactive {
 			help = styles.HelpStyle.Render("a: hide inactive")
 		} else {
 			help = styles.HelpStyle.Render("a: show all · esc esc: quit")

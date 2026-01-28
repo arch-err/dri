@@ -32,3 +32,5 @@ type RepoSelectedMsg struct {
 type BuildSelectedMsg struct {
 	Build *drone.Build
 }
+
+type ClearEscapeHintMsg struct{}

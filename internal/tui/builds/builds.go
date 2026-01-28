@@ -59,19 +59,26 @@ func (d compactDelegate) Render(w io.Writer, m list.Model, index int, item list.
 
 	isSelected := index == m.Index()
 
+	var cursor string
 	titleStyle := lipgloss.NewStyle()
 	descStyle := lipgloss.NewStyle().Foreground(lipgloss.Color("241"))
 
 	if isSelected {
+		cursor = lipgloss.NewStyle().
+			Foreground(lipgloss.Color("63")).
+			Bold(true).
+			Render("> ")
 		titleStyle = titleStyle.Foreground(lipgloss.Color("63")).Bold(true)
-		descStyle = descStyle.Foreground(lipgloss.Color("244"))
+		descStyle = descStyle.Foreground(lipgloss.Color("63"))
+	} else {
+		cursor = "  "
 	}
 
 	title := titleStyle.Render(i.Title())
 	desc := descStyle.Render(i.Description())
 
-	// Render title and description on consecutive lines without spacing
-	fmt.Fprintf(w, "%s\n%s", title, desc)
+	// Render with cursor indicator
+	fmt.Fprintf(w, "%s%s\n%s%s", cursor, title, cursor, desc)
 }
 
 func (d compactDelegate) Height() int {
