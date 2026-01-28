@@ -2,6 +2,7 @@ package tui
 
 import (
 	"fmt"
+	"os"
 	"strings"
 
 	"github.com/arch-err/dri/internal/client"
@@ -195,6 +196,13 @@ func (m Model) View() string {
 }
 
 func (m Model) renderStatusBar() string {
+	// DEBUG: Log every call
+	if f, err := os.OpenFile("/tmp/dri-debug.log", os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644); err == nil {
+		fmt.Fprintf(f, "=== renderStatusBar called: state=%d, width=%d, selectedRepo=%v, selectedBuild=%v ===\n",
+			m.state, m.width, m.selectedRepo != nil, m.selectedBuild != nil)
+		f.Close()
+	}
+
 	var parts []string
 
 	statusBarStyle := lipgloss.NewStyle().
@@ -232,12 +240,35 @@ func (m Model) renderStatusBar() string {
 		parts = append(parts, m.logViewer.RenderStatusBar())
 	}
 
+	// DEBUG: Log parts array
+	if f, err := os.OpenFile("/tmp/dri-debug.log", os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644); err == nil {
+		fmt.Fprintf(f, "  parts.len=%d\n", len(parts))
+		for i, p := range parts {
+			preview := p
+			if len(p) > 100 {
+				preview = p[:100] + "..."
+			}
+			fmt.Fprintf(f, "  parts[%d]: len=%d, %q\n", i, len(p), preview)
+		}
+		f.Close()
+	}
+
 	if len(parts) == 0 {
+		if f, err := os.OpenFile("/tmp/dri-debug.log", os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644); err == nil {
+			fmt.Fprintf(f, "  RETURNING EMPTY (len(parts)==0)\n")
+			f.Close()
+		}
 		return ""
 	}
 
 	// Join all parts - they already have their own backgrounds
 	joined := lipgloss.JoinHorizontal(lipgloss.Top, parts...)
+
+	// DEBUG: Log joined result
+	if f, err := os.OpenFile("/tmp/dri-debug.log", os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644); err == nil {
+		fmt.Fprintf(f, "  joined.len=%d, width=%d\n", len(joined), lipgloss.Width(joined))
+		f.Close()
+	}
 
 	// Fill remaining width with background color
 	if m.width > 0 {
@@ -245,8 +276,19 @@ func (m Model) renderStatusBar() string {
 		fillWidth := m.width - contentWidth
 		if fillWidth > 0 {
 			fillStyle := lipgloss.NewStyle().Background(lipgloss.Color("235"))
-			return joined + fillStyle.Render(strings.Repeat(" ", fillWidth))
+			result := joined + fillStyle.Render(strings.Repeat(" ", fillWidth))
+			// DEBUG: Log final result
+			if f, err := os.OpenFile("/tmp/dri-debug.log", os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644); err == nil {
+				fmt.Fprintf(f, "  RETURNING: len=%d, fillWidth=%d\n", len(result), fillWidth)
+				f.Close()
+			}
+			return result
 		}
+	}
+	// DEBUG: Log fallback return
+	if f, err := os.OpenFile("/tmp/dri-debug.log", os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644); err == nil {
+		fmt.Fprintf(f, "  RETURNING joined (no fill): len=%d\n", len(joined))
+		f.Close()
 	}
 	return joined
 }
