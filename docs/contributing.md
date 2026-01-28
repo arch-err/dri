@@ -5,8 +5,8 @@
 1. Clone the repository:
 
     ```bash
-    git clone https://github.com/arch-err/dri.git
-    cd dri
+    git clone https://github.com/arch-err/drone-tui.git
+    cd drone-tui
     ```
 
 2. Install dependencies:
@@ -18,7 +18,7 @@
 3. Build:
 
     ```bash
-    go build ./cmd/dri
+    go build ./cmd/drone-tui
     ```
 
 4. Run:
@@ -26,13 +26,13 @@
     ```bash
     export DRONE_SERVER=https://drone.example.com
     export DRONE_TOKEN=your-token
-    ./dri
+    ./drone-tui
     ```
 
 ## Project Structure
 
 ```
-cmd/dri/             Entrypoint
+cmd/drone-tui/             Entrypoint
 internal/
   client/            Drone SDK wrapper
   config/            Environment configuration

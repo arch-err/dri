@@ -5,12 +5,12 @@ before:
     - go mod tidy
 
 builds:
-  - main: ./cmd/dri
-    binary: dri
+  - main: ./cmd/drone-tui
+    binary: drone-tui
     env:
       - CGO_ENABLED=0
     ldflags:
-      - -s -w -X github.com/arch-err/dri/internal/version.Version={{.Version}}
+      - -s -w -X github.com/arch-err/drone-tui/internal/version.Version={{.Version}}
     goos:
       - linux
       - darwin

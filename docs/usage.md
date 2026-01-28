@@ -1,9 +1,9 @@
 # Usage
 
-## Starting dri
+## Starting drone-tui
 
 ```bash
-dri
+drone-tui
 ```
 
 This launches the interactive TUI. You'll see a list of all repositories synced with your Drone CI instance.
@@ -38,5 +38,5 @@ Repositories → Builds → Log Viewer
 ## Version
 
 ```bash
-dri --version
+drone-tui --version
 ```

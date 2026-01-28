@@ -1,6 +1,6 @@
-# dri
+# drone-tui
 
-**dri** (drone-interactive) is a terminal user interface for [Drone CI](https://www.drone.io/).
+**drone-tui** (drone-interactive) is a terminal user interface for [Drone CI](https://www.drone.io/).
 
 Browse repositories, inspect builds, and read step logs — all from your terminal.
 
@@ -16,12 +16,12 @@ Browse repositories, inspect builds, and read step logs — all from your termin
 
 ### Binary Releases
 
-Download from the [releases page](https://github.com/arch-err/dri/releases).
+Download from the [releases page](https://github.com/arch-err/drone-tui/releases).
 
 ### From Source
 
 ```bash
-go install github.com/arch-err/dri/cmd/dri@latest
+go install github.com/arch-err/drone-tui/cmd/drone-tui@latest
 ```
 
 ## Configuration
@@ -36,7 +36,7 @@ export DRONE_TOKEN=your-api-token
 ## Usage
 
 ```bash
-dri
+drone-tui
 ```
 
 ### Navigation
@@ -52,7 +52,7 @@ dri
 
 ## Documentation
 
-Full documentation available at [https://arch-err.github.io/dri](https://arch-err.github.io/dri)
+Full documentation available at [https://arch-err.github.io/drone-tui](https://arch-err.github.io/drone-tui)
 
 ## License
 

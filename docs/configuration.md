@@ -1,6 +1,6 @@
 # Configuration
 
-dri is configured through environment variables.
+drone-tui is configured through environment variables.
 
 ## Required Variables
 

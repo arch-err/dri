@@ -1,8 +1,8 @@
-site_name: dri
+site_name: drone-tui
 site_description: Interactive TUI for Drone CI
-site_url: https://arch-err.github.io/dri
-repo_url: https://github.com/arch-err/dri
-repo_name: arch-err/dri
+site_url: https://arch-err.github.io/drone-tui
+repo_url: https://github.com/arch-err/drone-tui
+repo_name: arch-err/drone-tui
 
 theme:
   name: material

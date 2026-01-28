@@ -1,6 +1,6 @@
-# dri
+# drone-tui
 
-**dri** (drone-interactive) is a terminal user interface for [Drone CI](https://www.drone.io/). Browse repositories, inspect builds, and read step logs — all from your terminal.
+**drone-tui** (drone-interactive) is a terminal user interface for [Drone CI](https://www.drone.io/). Browse repositories, inspect builds, and read step logs — all from your terminal.
 
 ## Features
 
@@ -15,7 +15,7 @@
 ```bash
 export DRONE_SERVER=https://drone.example.com
 export DRONE_TOKEN=your-api-token
-dri
+drone-tui
 ```
 
 ## Navigation
