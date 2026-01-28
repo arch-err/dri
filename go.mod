@@ -1,4 +1,4 @@
-module github.com/arch-err/dri
+module github.com/arch-err/drone-tui
 
 go 1.25.5
 

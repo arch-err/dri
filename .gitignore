@@ -24,3 +24,5 @@ vendor/
 
 # OS
 .DS_Store
+drone-tui
+dri

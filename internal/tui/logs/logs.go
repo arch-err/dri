@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/arch-err/dri/internal/tui/msg"
-	"github.com/arch-err/dri/internal/tui/styles"
+	"github.com/arch-err/drone-tui/internal/tui/msg"
+	"github.com/arch-err/drone-tui/internal/tui/styles"
 	"github.com/charmbracelet/bubbles/spinner"
 	"github.com/charmbracelet/bubbles/viewport"
 	tea "github.com/charmbracelet/bubbletea"

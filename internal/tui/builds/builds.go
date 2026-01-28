@@ -6,8 +6,8 @@ import (
 	"strings"
 	"time"
 
-	"github.com/arch-err/dri/internal/tui/msg"
-	"github.com/arch-err/dri/internal/tui/styles"
+	"github.com/arch-err/drone-tui/internal/tui/msg"
+	"github.com/arch-err/drone-tui/internal/tui/styles"
 	"github.com/charmbracelet/bubbles/list"
 	tea "github.com/charmbracelet/bubbletea"
 	"github.com/charmbracelet/lipgloss"

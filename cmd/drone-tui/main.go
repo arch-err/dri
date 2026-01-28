@@ -4,10 +4,10 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/arch-err/dri/internal/client"
-	"github.com/arch-err/dri/internal/config"
-	"github.com/arch-err/dri/internal/tui"
-	"github.com/arch-err/dri/internal/version"
+	"github.com/arch-err/drone-tui/internal/client"
+	"github.com/arch-err/drone-tui/internal/config"
+	"github.com/arch-err/drone-tui/internal/tui"
+	"github.com/arch-err/drone-tui/internal/version"
 	tea "github.com/charmbracelet/bubbletea"
 )
 
