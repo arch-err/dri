@@ -18,6 +18,6 @@ jobs:
         with:
           python-version: "3.x"
 
-      - run: pip install mkdocs-material
+      - run: pip install mkdocs-material mkdocs-include-markdown-plugin
 
       - run: mkdocs gh-deploy --force

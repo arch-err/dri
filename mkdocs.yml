@@ -32,6 +32,10 @@ nav:
   - Contributing: contributing.md
   - Changelog: changelog.md
 
+plugins:
+  - search
+  - include-markdown
+
 markdown_extensions:
   - admonition
   - pymdownx.highlight
