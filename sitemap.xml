@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+    <url>
+         <loc>https://arch-err.github.io/drone-tui/</loc>
+         <lastmod>2026-02-01</lastmod>
+    </url>
+    <url>
+         <loc>https://arch-err.github.io/drone-tui/changelog/</loc>
+         <lastmod>2026-02-01</lastmod>
+    </url>
+    <url>
+         <loc>https://arch-err.github.io/drone-tui/configuration/</loc>
+         <lastmod>2026-02-01</lastmod>
+    </url>
+    <url>
+         <loc>https://arch-err.github.io/drone-tui/contributing/</loc>
+         <lastmod>2026-02-01</lastmod>
+    </url>
+    <url>
+         <loc>https://arch-err.github.io/drone-tui/installation/</loc>
+         <lastmod>2026-02-01</lastmod>
+    </url>
+    <url>
+         <loc>https://arch-err.github.io/drone-tui/usage/</loc>
+         <lastmod>2026-02-01</lastmod>
+    </url>
+</urlset>
